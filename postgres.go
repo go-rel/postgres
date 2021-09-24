@@ -38,7 +38,7 @@ func New(database *db.DB) rel.Adapter {
 		updateBuilder    = builder.Update{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		deleteBuilder    = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		tableBuilder     = builder.Table{BufferFactory: bufferFactory, ColumnMapper: columnMapper}
-		indexBuilder     = builder.Index{BufferFactory: bufferFactory, DropIndexOnTable: true}
+		indexBuilder     = builder.Index{BufferFactory: bufferFactory}
 	)
 
 	return &Postgres{
