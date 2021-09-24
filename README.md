@@ -3,7 +3,7 @@
 [![GoDoc](https://godoc.org/github.com/go-rel/postgres?status.svg)](https://pkg.go.dev/github.com/go-rel/postgres)
 [![Tesst](https://github.com/go-rel/postgres/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/go-rel/postgres/actions/workflows/test.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-rel/postgres)](https://goreportcard.com/report/github.com/go-rel/postgres)
-[![codecov](https://codecov.io/gh/go-rel/postgres/branch/master/graph/badge.svg?token=56qOCsVPJF)](https://codecov.io/gh/go-rel/postgres)
+[![codecov](https://codecov.io/gh/go-rel/postgres/branch/main/graph/badge.svg?token=yxBdKVPXip)](https://codecov.io/gh/go-rel/postgres)
 [![Gitter chat](https://badges.gitter.im/go-rel/rel.png)](https://gitter.im/go-rel/rel)
 
 Postgres adapter for REL.
@@ -41,4 +41,4 @@ func main() {
 
 ## Supported Database
 
-- PostgreSQL 9, 10, 11, 12, 13 and 14
+- PostgreSQL 9, 10, 11, 12 and 13
