@@ -30,7 +30,7 @@ func dsn() string {
 func TestAdapter_specs(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
-	defer adapter.(*Postgres).Close()
+	defer adapter.Close()
 
 	repo := rel.New(adapter)
 
@@ -104,7 +104,7 @@ func TestAdapter_specs(t *testing.T) {
 func TestAdapter_Transaction_commitError(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
-	defer adapter.(*Postgres).Close()
+	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Commit(ctx))
 }
@@ -112,7 +112,7 @@ func TestAdapter_Transaction_commitError(t *testing.T) {
 func TestAdapter_Transaction_rollbackError(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
-	defer adapter.(*Postgres).Close()
+	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Rollback(ctx))
 }
@@ -120,7 +120,7 @@ func TestAdapter_Transaction_rollbackError(t *testing.T) {
 func TestAdapter_Exec_error(t *testing.T) {
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
-	defer adapter.(*Postgres).Close()
+	defer adapter.Close()
 
 	_, _, err = adapter.Exec(ctx, "error", nil)
 	assert.NotNil(t, err)
