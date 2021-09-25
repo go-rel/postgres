@@ -1,4 +1,4 @@
-module github.com/go-rel/mysql
+module github.com/go-rel/postgres
 
 go 1.17
 
