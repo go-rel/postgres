@@ -6,8 +6,8 @@ github.com/fsnotify/fsnotify v1.4.9 h1:hsms1Qyu0jgnwNXIxa+/V/PDsU6CfLf6CNO8H7IWo
 github.com/fsnotify/fsnotify v1.4.9/go.mod h1:znqG4EE+3YCdAaPaxE2ZRY/06pZUdp0tY4IgpuI1SZQ=
 github.com/go-rel/rel v0.25.1-0.20211007095335-eec7ac68c920 h1:EMM4iCtk2vwqLzIoSNTYMJ7lVaBLh8EurMc1ElrTnKk=
 github.com/go-rel/rel v0.25.1-0.20211007095335-eec7ac68c920/go.mod h1:/VBLj1U4ZVb53aB3n22RQwX0V9DvckohseDJQibn2Rs=
-github.com/go-rel/sql v0.1.1-0.20211008164953-7c77b5644b3a h1:5n/bHvGLxkkVbofaqn7cRf1Xf8NmJc0h6tKuaWRrUUw=
-github.com/go-rel/sql v0.1.1-0.20211008164953-7c77b5644b3a/go.mod h1:ukXvTr/zbEZLu+lJCXcKpMg1Vp7Ps9cfKD+Us4kJREo=
+github.com/go-rel/sql v0.1.1-0.20211011073646-a38034248e90 h1:638QwWIymw8cizASdq594qlDM729vYEtJobdy8wv2Lo=
+github.com/go-rel/sql v0.1.1-0.20211011073646-a38034248e90/go.mod h1:ukXvTr/zbEZLu+lJCXcKpMg1Vp7Ps9cfKD+Us4kJREo=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.4.0-rc.1/go.mod h1:ceaxUfeHdC40wWswd/P6IGgMaK3YpKi5j83Wpe3EHw8=

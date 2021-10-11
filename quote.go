@@ -27,14 +27,13 @@ func (q Quote) Value(v interface{}) string {
 type ValueConvert struct{}
 
 func (c ValueConvert) ConvertValue(v interface{}) (driver.Value, error) {
+	v, err := driver.DefaultParameterConverter.ConvertValue(v)
+	if err != nil {
+		return nil, err
+	}
 	switch v := v.(type) {
 	default:
-		return driver.DefaultParameterConverter.ConvertValue(v)
-	case *time.Time:
-		if v == nil {
-			return nil, nil
-		}
-		return c.ConvertValue(*v)
+		return v, nil
 	case time.Time:
 		return v.Truncate(time.Microsecond).Format("2006-01-02 15:04:05.999999999Z07:00:00"), nil
 	}

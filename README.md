@@ -54,5 +54,5 @@ docker run -it --rm -p 5433:5432 -e "POSTGRES_USER=rel" -e "POSTGRES_PASSWORD=te
 ### Run tests
 
 ```console
-POSTGRESQL_DATABASE="postgres://rel:test@localhost:5433/rel_test" PGPASSWORD="rel" go test ./...
+POSTGRESQL_DATABASE="postgres://rel:test@localhost:5433/rel_test?timezone=Asia/Jakarta" go test ./...
 ```
