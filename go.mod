@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-rel/rel v0.25.1-0.20211007095335-eec7ac68c920
+	github.com/go-rel/rel v0.25.1-0.20211011102656-a1b38f01d34a
 	github.com/go-rel/sql v0.1.1-0.20211011073646-a38034248e90
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/lib/pq v1.10.3
