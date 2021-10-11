@@ -14,6 +14,56 @@ func TestQuote_Panic(t *testing.T) {
 	})
 }
 
+func TestQuote_ID(t *testing.T) {
+	quoter := Quote{}
+
+	var cases = []struct {
+		input string
+		want  string
+	}{
+		{`foo`, `"foo"`},
+		{`foo bar baz`, `"foo bar baz"`},
+		{`foo"bar`, `"foo""bar"`},
+		{"foo\x00bar", `"foo"`},
+		{"\x00foo", `""`},
+	}
+
+	for _, test := range cases {
+		assert.Equal(t, test.want, quoter.ID(test.input))
+	}
+}
+
+func TestQuote_Value(t *testing.T) {
+	quoter := Quote{}
+
+	var cases = []struct {
+		input string
+		want  string
+	}{
+		{`foo`, `'foo'`},
+		{`foo bar baz`, `'foo bar baz'`},
+		{`foo'bar`, `'foo''bar'`},
+		{`foo\bar`, ` E'foo\\bar'`},
+		{`foo\ba'r`, ` E'foo\\ba''r'`},
+		{`foo"bar`, `'foo"bar'`},
+		{`foo\x00bar`, ` E'foo\\x00bar'`},
+		{`\x00foo`, ` E'\\x00foo'`},
+		{`'`, `''''`},
+		{`''`, `''''''`},
+		{`\`, ` E'\\'`},
+		{`'abc'; DROP TABLE users;`, `'''abc''; DROP TABLE users;'`},
+		{`\'`, ` E'\\'''`},
+		{`E'\''`, ` E'E''\\'''''`},
+		{`e'\''`, ` E'e''\\'''''`},
+		{`E'\'abc\'; DROP TABLE users;'`, ` E'E''\\''abc\\''; DROP TABLE users;'''`},
+		{`e'\'abc\'; DROP TABLE users;'`, ` E'e''\\''abc\\''; DROP TABLE users;'''`},
+	}
+
+	for _, test := range cases {
+		assert.Equal(t, test.want, quoter.Value(test.input))
+	}
+}
+
 type customType int
 
 func (c customType) Value() (driver.Value, error) {
