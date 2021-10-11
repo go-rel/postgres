@@ -42,3 +42,17 @@ func main() {
 ## Supported Database
 
 - PostgreSQL 9, 10, 11, 12 and 13
+
+## Testing
+
+### Start PostgreSQL server in Docker
+
+```console
+docker run -it --rm -p 5433:5432 -e "POSTGRES_USER=rel" -e "POSTGRES_PASSWORD=test" -e "POSTGRES_DB=rel_test" postgres:14-alpine
+```
+
+### Run tests
+
+```console
+POSTGRESQL_DATABASE="postgres://rel:test@localhost:5433/rel_test?timezone=Asia/Jakarta" go test ./...
+```

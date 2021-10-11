@@ -30,15 +30,17 @@ type Postgres struct {
 // New postgres adapter using existing connection.
 func New(database *db.DB) rel.Adapter {
 	var (
-		bufferFactory    = builder.BufferFactory{ArgumentPlaceholder: "$", ArgumentOrdinal: true, EscapePrefix: "\"", EscapeSuffix: "\""}
+		bufferFactory    = builder.BufferFactory{ArgumentPlaceholder: "$", ArgumentOrdinal: true, BoolTrueValue: "true", BoolFalseValue: "true", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		filterBuilder    = builder.Filter{}
 		queryBuilder     = builder.Query{BufferFactory: bufferFactory, Filter: filterBuilder}
 		InsertBuilder    = builder.Insert{BufferFactory: bufferFactory, ReturningPrimaryValue: true, InsertDefaultValues: true}
 		insertAllBuilder = builder.InsertAll{BufferFactory: bufferFactory, ReturningPrimaryValue: true}
 		updateBuilder    = builder.Update{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
 		deleteBuilder    = builder.Delete{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
-		tableBuilder     = builder.Table{BufferFactory: bufferFactory, ColumnMapper: columnMapper}
-		indexBuilder     = builder.Index{BufferFactory: bufferFactory}
+		ddlBufferFactory = builder.BufferFactory{InlineValues: true, BoolTrueValue: "true", BoolFalseValue: "true", Quoter: Quote{}, ValueConverter: ValueConvert{}}
+		ddlQueryBuilder  = builder.Query{BufferFactory: ddlBufferFactory, Filter: filterBuilder}
+		tableBuilder     = builder.Table{BufferFactory: ddlBufferFactory, ColumnMapper: columnMapper}
+		indexBuilder     = builder.Index{BufferFactory: ddlBufferFactory, Query: ddlQueryBuilder, Filter: filterBuilder, SupportFilter: true}
 	)
 
 	return &Postgres{
