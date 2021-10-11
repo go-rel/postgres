@@ -2,16 +2,19 @@ package postgres
 
 import (
 	"database/sql/driver"
+	"strings"
 	"time"
-
-	"github.com/lib/pq"
 )
 
 // Quote PostgreSQL identifiers and literals.
 type Quote struct{}
 
 func (q Quote) ID(name string) string {
-	return pq.QuoteIdentifier(name)
+	end := strings.IndexRune(name, 0)
+	if end > -1 {
+		name = name[:end]
+	}
+	return `"` + strings.Replace(name, `"`, `""`, -1) + `"`
 }
 
 func (q Quote) Value(v interface{}) string {
@@ -19,7 +22,14 @@ func (q Quote) Value(v interface{}) string {
 	default:
 		panic("unsupported value")
 	case string:
-		return pq.QuoteLiteral(v)
+		v = strings.Replace(v, `'`, `''`, -1)
+		if strings.Contains(v, `\`) {
+			v = strings.Replace(v, `\`, `\\`, -1)
+			v = ` E'` + v + `'`
+		} else {
+			v = `'` + v + `'`
+		}
+		return v
 	}
 }
 
