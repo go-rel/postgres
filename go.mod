@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/go-rel/rel v0.27.0
-	github.com/go-rel/sql v0.2.0
+	github.com/go-rel/sql v0.5.0
 	github.com/lib/pq v1.10.3
 	github.com/stretchr/testify v1.7.0
 )
