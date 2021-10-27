@@ -55,7 +55,7 @@ jobs:
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Test
         env:
-          PRIMARY_REPLICA: 'true'
+          TEST_PRIMARY_REPLICA: 'true'
         run: |
           sleep 15
           go test -race -tags=primaryreplica ./...

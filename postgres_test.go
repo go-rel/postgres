@@ -98,7 +98,7 @@ func AdapterSpecs(t *testing.T, repo rel.Repository) {
 }
 
 func TestAdapter_specs(t *testing.T) {
-	if os.Getenv("PRIMARY_REPLICA") != "" {
+	if os.Getenv("TEST_PRIMARY_REPLICA") == "true" {
 		t.Log("Skipping single node specs")
 		return
 	}
@@ -111,7 +111,7 @@ func TestAdapter_specs(t *testing.T) {
 }
 
 func TestAdapter_PrimaryReplica_specs(t *testing.T) {
-	if os.Getenv("PRIMARY_REPLICA") == "" {
+	if os.Getenv("TEST_PRIMARY_REPLICA") != "true" {
 		t.Log("Skipping primary replica specs")
 		return
 	}
