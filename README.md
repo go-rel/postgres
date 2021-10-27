@@ -35,6 +35,34 @@ func main() {
 }
 ```
 
+## Example Replication (Master/Standby)
+
+```go
+package main
+
+import (
+	"context"
+
+	"github.com/go-rel/primaryreplica"
+	_ "github.com/lib/pq"
+	"github.com/go-rel/postgres"
+	"github.com/go-rel/rel"
+)
+
+func main() {
+	// open postgres connections.
+	adapter := primaryreplica.New(
+		postgres.MustOpen("postgres://postgres@master/rel_test?sslmode=disable"),
+		postgres.MustOpen("postgres://postgres@standby/rel_test?sslmode=disable"),
+	)
+	defer adapter.Close()
+
+	// initialize REL's repo.
+	repo := rel.New(adapter)
+	repo.Ping(context.TODO())
+}
+```
+
 ## Supported Driver
 
 - github.com/lib/pq
