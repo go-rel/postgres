@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
 	"github.com/go-rel/rel/adapter/specs"
 	_ "github.com/lib/pq"
@@ -24,16 +25,10 @@ func dsn() string {
 		return os.Getenv("POSTGRESQL_DATABASE") + "?sslmode=disable&timezone=Asia/Jakarta"
 	}
 
-	return "postgres://rel@localhost:5432/rel_test?sslmode=disable&timezone=Asia/Jakarta"
+	return "postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"
 }
 
-func TestAdapter_specs(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
-	defer adapter.Close()
-
-	repo := rel.New(adapter)
-
+func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Prepare tables
 	teardown := specs.Setup(t, repo)
 	defer teardown()
@@ -99,6 +94,36 @@ func TestAdapter_specs(t *testing.T) {
 	specs.ForeignKeyConstraintOnUpdate(t, repo)
 	specs.CheckConstraintOnInsert(t, repo)
 	specs.CheckConstraintOnUpdate(t, repo)
+}
+
+func TestAdapter_specs(t *testing.T) {
+	if os.Getenv("PRIMARY_REPLICA") != "" {
+		t.Log("Skipping single node specs")
+		return
+	}
+
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
+}
+
+func TestAdapter_PrimaryReplica_specs(t *testing.T) {
+	if os.Getenv("PRIMARY_REPLICA") == "" {
+		t.Log("Skipping primary replica specs")
+		return
+	}
+
+	adapter := primaryreplica.New(
+		MustOpen("postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
+		MustOpen("postgres://rel:rel@localhost:25433/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
+	)
+
+	defer adapter.Close()
+
+	repo := rel.New(adapter)
+	AdapterSpecs(t, repo)
 }
 
 func TestAdapter_Transaction_commitError(t *testing.T) {
