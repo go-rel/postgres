@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+	"errors"
 	"os"
 	"testing"
 	"time"
@@ -149,4 +150,10 @@ func TestAdapter_Exec_error(t *testing.T) {
 
 	_, _, err = adapter.Exec(ctx, "error", nil)
 	assert.NotNil(t, err)
+}
+
+func TestCheck(t *testing.T) {
+	assert.Panics(t, func() {
+		check(errors.New("error"))
+	})
 }
