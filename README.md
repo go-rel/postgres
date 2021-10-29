@@ -66,10 +66,11 @@ func main() {
 ## Supported Driver
 
 - github.com/lib/pq
+- github.com/jackc/pgx/v4/stdlib
 
 ## Supported Database
 
-- PostgreSQL 9, 10, 11, 12 and 13
+- PostgreSQL 9.6, 10, 11, 12, 13 and 14
 
 ## Testing
 
