@@ -64,6 +64,13 @@ func Open(dsn string) (rel.Adapter, error) {
 	return New(database), err
 }
 
+// MustOpen postgres connection using dsn.
+func MustOpen(dsn string) rel.Adapter {
+	var database, err = db.Open("postgres", dsn)
+	check(err)
+	return New(database)
+}
+
 // Insert inserts a record to database and returns its id.
 func (p Postgres) Insert(ctx context.Context, query rel.Query, primaryField string, mutates map[string]rel.Mutate) (interface{}, error) {
 	var (
@@ -175,4 +182,10 @@ func columnMapper(column *rel.Column) (string, int, int) {
 	}
 
 	return typ, m, n
+}
+
+func check(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
