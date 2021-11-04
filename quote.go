@@ -45,6 +45,6 @@ func (c ValueConvert) ConvertValue(v interface{}) (driver.Value, error) {
 	default:
 		return v, nil
 	case time.Time:
-		return v.Truncate(time.Microsecond).Format(TimstampFormat), nil
+		return FormatTime(v), nil
 	}
 }
