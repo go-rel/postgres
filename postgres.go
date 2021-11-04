@@ -164,9 +164,9 @@ func columnMapper(column *rel.Column) (string, int, int) {
 
 	switch column.Type {
 	case rel.ID:
-		typ = "SERIAL NOT NULL PRIMARY KEY"
+		typ = "SERIAL NOT NULL"
 	case rel.BigID:
-		typ = "BIGSERIAL NOT NULL PRIMARY KEY"
+		typ = "BIGSERIAL NOT NULL"
 	case rel.DateTime:
 		typ = "TIMESTAMPTZ"
 		if t, ok := column.Default.(time.Time); ok {
