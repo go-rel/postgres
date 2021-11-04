@@ -22,6 +22,9 @@ import (
 	"github.com/go-rel/sql/builder"
 )
 
+// TimestampFormat used by PostgreSQL adapter.
+const TimstampFormat = "2006-01-02 15:04:05.999999999Z07:00:00"
+
 // Postgres adapter.
 type Postgres struct {
 	sql.SQL
@@ -170,7 +173,7 @@ func columnMapper(column *rel.Column) (string, int, int) {
 	case rel.DateTime:
 		typ = "TIMESTAMPTZ"
 		if t, ok := column.Default.(time.Time); ok {
-			column.Default = t.Format("2006-01-02 15:04:05")
+			column.Default = t.Truncate(time.Microsecond).Format(TimstampFormat)
 		}
 	case rel.Int, rel.BigInt, rel.Text:
 		column.Limit = 0
