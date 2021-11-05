@@ -170,7 +170,7 @@ func columnMapper(column *rel.Column) (string, int, int) {
 	case rel.DateTime:
 		typ = "TIMESTAMPTZ"
 		if t, ok := column.Default.(time.Time); ok {
-			column.Default = t.Format("2006-01-02 15:04:05")
+			column.Default = FormatTime(t)
 		}
 	case rel.Int, rel.BigInt, rel.Text:
 		column.Limit = 0
