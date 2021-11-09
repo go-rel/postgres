@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/go-rel/primaryreplica v0.1.0
-	github.com/go-rel/rel v0.29.1
+	github.com/go-rel/rel v0.29.2
 	github.com/go-rel/sql v0.6.0
 	github.com/jackc/pgx/v4 v4.13.0
 	github.com/lib/pq v1.10.4
