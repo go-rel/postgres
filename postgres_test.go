@@ -9,7 +9,7 @@ import (
 
 	"github.com/go-rel/primaryreplica"
 	"github.com/go-rel/rel"
-	"github.com/go-rel/rel/adapter/specs"
+	"github.com/go-rel/sql/specs"
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
 )
@@ -31,11 +31,11 @@ func dsn() string {
 
 func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Prepare tables
-	teardown := specs.Setup(t, repo)
+	teardown := specs.Setup(repo)
 	defer teardown()
 
 	// Migration Specs
-	specs.Migrate(t, repo)
+	specs.Migrate()
 
 	// Query Specs
 	specs.Query(t, repo)
