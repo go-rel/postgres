@@ -3,7 +3,7 @@ module github.com/go-rel/postgres
 go 1.17
 
 require (
-	github.com/go-rel/primaryreplica v0.1.0
+	github.com/go-rel/primaryreplica v0.2.0
 	github.com/go-rel/rel v0.30.0
 	github.com/go-rel/sql v0.7.0
 	github.com/jackc/pgx/v4 v4.13.0
