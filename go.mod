@@ -6,7 +6,7 @@ require (
 	github.com/go-rel/primaryreplica v0.2.0
 	github.com/go-rel/rel v0.30.0
 	github.com/go-rel/sql v0.7.0
-	github.com/jackc/pgx/v4 v4.14.0
+	github.com/jackc/pgx/v4 v4.14.1
 	github.com/lib/pq v1.10.4
 	github.com/stretchr/testify v1.7.0
 )
@@ -19,7 +19,7 @@ require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgproto3/v2 v2.2.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
-	github.com/jackc/pgtype v1.9.0 // indirect
+	github.com/jackc/pgtype v1.9.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/serenize/snaker v0.0.0-20201027110005-a7ad2135616e // indirect
