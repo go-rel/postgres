@@ -33,7 +33,7 @@ func New(database *db.DB) rel.Adapter {
 		bufferFactory     = builder.BufferFactory{ArgumentPlaceholder: "$", ArgumentOrdinal: true, BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		filterBuilder     = builder.Filter{}
 		queryBuilder      = builder.Query{BufferFactory: bufferFactory, Filter: filterBuilder}
-		OnConflictBuilder = builder.OnConflict{Statement: "ON CONFLICT", IgnoreStatement: "DO NOTHING", UpdateStatement: "DO UPDATE SET", TableQualifier: "EXCLUDED", SupportKey: true}
+		OnConflictBuilder = builder.OnConflict{Statement: "ON CONFLICT", IgnoreStatement: "DO NOTHING", UpdateStatement: "DO UPDATE SET", TableQualifier: "excluded", SupportKey: true}
 		InsertBuilder     = builder.Insert{BufferFactory: bufferFactory, ReturningPrimaryValue: true, InsertDefaultValues: true, OnConflict: OnConflictBuilder}
 		insertAllBuilder  = builder.InsertAll{BufferFactory: bufferFactory, ReturningPrimaryValue: true, OnConflict: OnConflictBuilder}
 		updateBuilder     = builder.Update{BufferFactory: bufferFactory, Query: queryBuilder, Filter: filterBuilder}
