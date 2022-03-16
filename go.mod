@@ -8,7 +8,7 @@ require (
 	github.com/go-rel/sql v0.9.1
 	github.com/jackc/pgx/v4 v4.15.0
 	github.com/lib/pq v1.10.4
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 )
 
 require (
