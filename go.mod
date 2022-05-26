@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/go-rel/primaryreplica v0.4.0
-	github.com/go-rel/rel v0.34.0
+	github.com/go-rel/rel v0.34.1
 	github.com/go-rel/sql v0.10.0
 	github.com/jackc/pgx/v4 v4.16.1
 	github.com/lib/pq v1.10.6
@@ -25,5 +25,5 @@ require (
 	github.com/serenize/snaker v0.0.0-20201027110005-a7ad2135616e // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
+	gopkg.in/yaml.v3 v3.0.0 // indirect
 )
