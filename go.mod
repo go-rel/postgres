@@ -4,11 +4,11 @@ go 1.17
 
 require (
 	github.com/go-rel/primaryreplica v0.4.0
-	github.com/go-rel/rel v0.36.0
-	github.com/go-rel/sql v0.10.0
+	github.com/go-rel/rel v0.37.0
+	github.com/go-rel/sql v0.11.0
 	github.com/jackc/pgx/v4 v4.16.1
 	github.com/lib/pq v1.10.6
-	github.com/stretchr/testify v1.7.5
+	github.com/stretchr/testify v1.8.0
 )
 
 require (
