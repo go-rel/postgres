@@ -31,7 +31,7 @@ type Postgres struct {
 // New postgres adapter using existing connection.
 func New(database *db.DB) rel.Adapter {
 	var (
-		bufferFactory     = builder.BufferFactory{ArgumentPlaceholder: "$", ArgumentOrdinal: true, BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
+		bufferFactory     = builder.BufferFactory{AllowTableSchema: true, ArgumentPlaceholder: "$", ArgumentOrdinal: true, BoolTrueValue: "true", BoolFalseValue: "false", Quoter: Quote{}, ValueConverter: ValueConvert{}}
 		filterBuilder     = builder.Filter{}
 		queryBuilder      = builder.Query{BufferFactory: bufferFactory, Filter: filterBuilder}
 		OnConflictBuilder = builder.OnConflict{Statement: "ON CONFLICT", IgnoreStatement: "DO NOTHING", UpdateStatement: "DO UPDATE SET", TableQualifier: "excluded", SupportKey: true}
@@ -62,13 +62,13 @@ func New(database *db.DB) rel.Adapter {
 
 // Open postgres connection using dsn.
 func Open(dsn string) (rel.Adapter, error) {
-	var database, err = db.Open("postgres", dsn)
+	database, err := db.Open("postgres", dsn)
 	return New(database), err
 }
 
 // MustOpen postgres connection using dsn.
 func MustOpen(dsn string) rel.Adapter {
-	var database, err = db.Open("postgres", dsn)
+	database, err := db.Open("postgres", dsn)
 	check(err)
 	return New(database)
 }
@@ -111,9 +111,7 @@ func (p Postgres) InsertAll(ctx context.Context, query rel.Query, primaryField s
 
 // Begin begins a new transaction.
 func (p Postgres) Begin(ctx context.Context) (rel.Adapter, error) {
-	var (
-		txSql, err = p.SQL.Begin(ctx)
-	)
+	txSql, err := p.SQL.Begin(ctx)
 
 	return &Postgres{SQL: *txSql.(*sql.SQL)}, err
 }
