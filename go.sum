@@ -19,8 +19,8 @@ github.com/go-rel/primaryreplica v0.5.0 h1:pIxgIgED/qnp2P3sZbrZxlB7EXmQf8KoBaRMd
 github.com/go-rel/primaryreplica v0.5.0/go.mod h1:GeFi8vTz/XtLVz+eZSWlmy02+hwd1vAsy4te0JYQbq4=
 github.com/go-rel/rel v0.40.0 h1:Av2/Ub6fQn6UbwxTIHStfLb7W+knRhOVX8AWcC+pOBA=
 github.com/go-rel/rel v0.40.0/go.mod h1:6opWRxsoHoDq67fIDnsmcmnojpskWpPqCs0AoL/UrEU=
-github.com/go-rel/sql v0.15.1-0.20230926233117-4af81443c5e1 h1:bZPY44kTQgh/w2mvYW6I1PR6z+giWTQ6v+KTgSXIi48=
-github.com/go-rel/sql v0.15.1-0.20230926233117-4af81443c5e1/go.mod h1:gL4ljbWWc0LBCXAtWKPwO2vLkU6+7HaXXuvvo3ngld8=
+github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1 h1:K3wgZUbotCQT/a8S9/ZuPOfz77AqHiPNZHRm9DWlVnA=
+github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1/go.mod h1:9Jy+N+nTTjlq9QZquoj19tppYuBXMz2grOtTN6HBD3U=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gofrs/uuid v4.0.0+incompatible h1:1SD/1F5pU8p29ybwgQSwpQk+mwdRrXCYuPhW6m+TnJw=
 github.com/gofrs/uuid v4.0.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
