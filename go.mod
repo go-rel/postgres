@@ -1,11 +1,13 @@
 module github.com/go-rel/postgres
 
-go 1.20
+go 1.21
+
+toolchain go1.21.0
 
 require (
 	github.com/go-rel/primaryreplica v0.5.0
 	github.com/go-rel/rel v0.40.0
-	github.com/go-rel/sql v0.15.0
+	github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1
 	github.com/jackc/pgx/v4 v4.18.1
 	github.com/lib/pq v1.10.9
 	github.com/stretchr/testify v1.8.4
