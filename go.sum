@@ -17,10 +17,11 @@ github.com/go-kit/log v0.1.0/go.mod h1:zbhenjAZHb184qTLMA9ZjW7ThYL0H2mk7Q6pNt4vb
 github.com/go-logfmt/logfmt v0.5.0/go.mod h1:wCYkCAKZfumFQihp8CzCvQ3paCTfi41vtzG1KdI/P7A=
 github.com/go-rel/primaryreplica v0.5.0 h1:pIxgIgED/qnp2P3sZbrZxlB7EXmQf8KoBaRMddXL61E=
 github.com/go-rel/primaryreplica v0.5.0/go.mod h1:GeFi8vTz/XtLVz+eZSWlmy02+hwd1vAsy4te0JYQbq4=
-github.com/go-rel/rel v0.40.0 h1:Av2/Ub6fQn6UbwxTIHStfLb7W+knRhOVX8AWcC+pOBA=
 github.com/go-rel/rel v0.40.0/go.mod h1:6opWRxsoHoDq67fIDnsmcmnojpskWpPqCs0AoL/UrEU=
-github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1 h1:K3wgZUbotCQT/a8S9/ZuPOfz77AqHiPNZHRm9DWlVnA=
-github.com/go-rel/sql v0.15.1-0.20230927020931-5b67559d2fe1/go.mod h1:9Jy+N+nTTjlq9QZquoj19tppYuBXMz2grOtTN6HBD3U=
+github.com/go-rel/rel v0.40.1-0.20231007112841-2e07fc196025 h1:Gq1za5TzJT5h7ByoaSYsKpcMJ5QcRvW7aJwBUJZNLcc=
+github.com/go-rel/rel v0.40.1-0.20231007112841-2e07fc196025/go.mod h1:6opWRxsoHoDq67fIDnsmcmnojpskWpPqCs0AoL/UrEU=
+github.com/go-rel/sql v0.15.1-0.20231007214945-be5e6ac51f86 h1:v4Oq20WfEwOkWiTlEKuqhtNkfTmZ39eK7Vj0U0cmAwI=
+github.com/go-rel/sql v0.15.1-0.20231007214945-be5e6ac51f86/go.mod h1:1XD69cctqmI7vmIQikG2iAIL07Ql2Uy/mluOgD6uCZI=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/gofrs/uuid v4.0.0+incompatible h1:1SD/1F5pU8p29ybwgQSwpQk+mwdRrXCYuPhW6m+TnJw=
 github.com/gofrs/uuid v4.0.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=

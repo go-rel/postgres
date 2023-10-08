@@ -28,6 +28,13 @@ func dsn() string {
 	return "postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"
 }
 
+func TestAdapter_Name(t *testing.T) {
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	assert.Equal(t, Name, adapter.Name())
+}
+
 func AdapterSpecs(t *testing.T, repo rel.Repository) {
 	// Prepare tables
 	teardown := specs.Setup(repo)
@@ -132,16 +139,14 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 }
 
 func TestAdapter_Transaction_commitError(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Commit(ctx))
 }
 
 func TestAdapter_Transaction_rollbackError(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Rollback(ctx))
@@ -157,8 +162,7 @@ func TestAdapter_Exec_error(t *testing.T) {
 }
 
 func TestAdapter_TableBuilder(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	tests := []struct {
