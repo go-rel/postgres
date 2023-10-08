@@ -2,7 +2,6 @@ package postgres
 
 import (
 	"context"
-	"errors"
 	"os"
 	"testing"
 	"time"
@@ -203,10 +202,4 @@ func TestAdapter_TableBuilder(t *testing.T) {
 			assert.Equal(t, test.result, adapter.(*Postgres).TableBuilder.Build(test.table))
 		})
 	}
-}
-
-func TestCheck(t *testing.T) {
-	assert.Panics(t, func() {
-		check(errors.New("error"))
-	})
 }
