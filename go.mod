@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.0
 
 require (
-	github.com/go-rel/primaryreplica v0.5.0
+	github.com/go-rel/primaryreplica v0.5.1-0.20231009233555-b640af5a3ec8
 	github.com/go-rel/rel v0.40.1-0.20231007112841-2e07fc196025
 	github.com/go-rel/sql v0.15.1-0.20231007214945-be5e6ac51f86
 	github.com/jackc/pgx/v4 v4.18.1
@@ -27,5 +27,6 @@ require (
 	github.com/serenize/snaker v0.0.0-20201027110005-a7ad2135616e // indirect
 	golang.org/x/crypto v0.6.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
+	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
