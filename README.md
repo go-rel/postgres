@@ -77,11 +77,11 @@ func main() {
 ### Start PostgreSQL server in Docker
 
 ```console
-docker run -it --rm -p 5433:5432 -e "POSTGRES_USER=rel" -e "POSTGRES_PASSWORD=test" -e "POSTGRES_DB=rel_test" postgres:14-alpine
+docker run -it --rm -p 25432:5432 -e "POSTGRES_USER=rel" -e "POSTGRES_PASSWORD=rel" -e "POSTGRES_DB=rel_test" postgres:14-alpine
 ```
 
 ### Run tests
 
 ```console
-POSTGRESQL_DATABASE="postgres://rel:test@localhost:5433/rel_test" go test ./...
+go test ./...
 ```
