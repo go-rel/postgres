@@ -83,5 +83,5 @@ docker run -it --rm -p 25432:5432 -e "POSTGRES_USER=rel" -e "POSTGRES_PASSWORD=r
 ### Run tests
 
 ```console
-go test ./...
+go test -p 1 ./...
 ```

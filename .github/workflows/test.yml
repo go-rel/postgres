@@ -32,14 +32,14 @@ jobs:
           POSTGRESQL_DATABASE: postgres://rel:rel@localhost/rel_test
         run: |
           sleep 15
-          go test -race ./...
+          go test -race -p 1 ./...
         if: matrix.postgres != 13
       - name: Coverage
         env:
           POSTGRESQL_DATABASE: postgres://rel:rel@localhost/rel_test
         run: |
           sleep 15
-          go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+          go test -race -p 1 -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.postgres == 13
       - name: Codecov
         uses: codecov/codecov-action@v1
@@ -62,4 +62,4 @@ jobs:
           TEST_PRIMARY_REPLICA: 'true'
         run: |
           sleep 15
-          go test -race -tags=primaryreplica ./...
+          go test -race -p 1 -tags=primaryreplica -run ^TestAdapter_PrimaryReplica_specs$ ./...
