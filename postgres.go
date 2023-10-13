@@ -28,6 +28,11 @@ type Postgres struct {
 	sql.SQL
 }
 
+// Name of database type this adapter implements.
+const Name string = "postgres"
+
+var driverName string = "postgres"
+
 // New postgres adapter using existing connection.
 func New(database *db.DB) rel.Adapter {
 	var (
@@ -62,15 +67,22 @@ func New(database *db.DB) rel.Adapter {
 
 // Open postgres connection using dsn.
 func Open(dsn string) (rel.Adapter, error) {
-	database, err := db.Open("postgres", dsn)
+	database, err := db.Open(driverName, dsn)
 	return New(database), err
 }
 
 // MustOpen postgres connection using dsn.
 func MustOpen(dsn string) rel.Adapter {
-	database, err := db.Open("postgres", dsn)
-	check(err)
-	return New(database)
+	adapter, err := Open(dsn)
+	if err != nil {
+		panic(err)
+	}
+	return adapter
+}
+
+// Name of database adapter.
+func (Postgres) Name() string {
+	return Name
 }
 
 // Insert inserts a record to database and returns its id.
@@ -184,8 +196,12 @@ func columnMapper(column *rel.Column) (string, int, int) {
 	return typ, m, n
 }
 
-func check(err error) {
-	if err != nil {
-		panic(err)
+func init() {
+	// Identify if pgx driver is available and default to that instead.
+	for _, drv := range db.Drivers() {
+		if drv == "pgx" {
+			driverName = "pgx"
+			break
+		}
 	}
 }

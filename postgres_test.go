@@ -2,7 +2,6 @@ package postgres
 
 import (
 	"context"
-	"errors"
 	"os"
 	"testing"
 	"time"
@@ -27,6 +26,14 @@ func dsn() string {
 	}
 
 	return "postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"
+}
+
+func TestAdapter_Name(t *testing.T) {
+	driverName = "postgres"
+	adapter := MustOpen(dsn())
+	defer adapter.Close()
+
+	assert.Equal(t, Name, adapter.Name())
 }
 
 func AdapterSpecs(t *testing.T, repo rel.Repository) {
@@ -108,6 +115,7 @@ func TestAdapter_specs(t *testing.T) {
 		return
 	}
 
+	driverName = "postgres"
 	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
@@ -121,6 +129,7 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 		return
 	}
 
+	driverName = "postgres"
 	adapter := primaryreplica.New(
 		MustOpen("postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
 		MustOpen("postgres://rel:rel@localhost:25433/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
@@ -133,22 +142,23 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 }
 
 func TestAdapter_Transaction_commitError(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	driverName = "postgres"
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Commit(ctx))
 }
 
 func TestAdapter_Transaction_rollbackError(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	driverName = "postgres"
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Rollback(ctx))
 }
 
 func TestAdapter_Exec_error(t *testing.T) {
+	driverName = "postgres"
 	adapter, err := Open(dsn())
 	assert.Nil(t, err)
 	defer adapter.Close()
@@ -158,8 +168,8 @@ func TestAdapter_Exec_error(t *testing.T) {
 }
 
 func TestAdapter_TableBuilder(t *testing.T) {
-	adapter, err := Open(dsn())
-	assert.Nil(t, err)
+	driverName = "postgres"
+	adapter := MustOpen(dsn())
 	defer adapter.Close()
 
 	tests := []struct {
@@ -203,10 +213,4 @@ func TestAdapter_TableBuilder(t *testing.T) {
 			assert.Equal(t, test.result, adapter.(*Postgres).TableBuilder.Build(test.table))
 		})
 	}
-}
-
-func TestCheck(t *testing.T) {
-	assert.Panics(t, func() {
-		check(errors.New("error"))
-	})
 }
