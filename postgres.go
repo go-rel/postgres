@@ -73,11 +73,11 @@ func Open(dsn string) (rel.Adapter, error) {
 
 // MustOpen postgres connection using dsn.
 func MustOpen(dsn string) rel.Adapter {
-	database, err := db.Open(driverName, dsn)
+	adapter, err := Open(dsn)
 	if err != nil {
 		panic(err)
 	}
-	return New(database)
+	return adapter
 }
 
 // Name of database adapter.
