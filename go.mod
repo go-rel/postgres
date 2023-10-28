@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.0
 
 require (
-	github.com/go-rel/primaryreplica v0.5.1-0.20231009233555-b640af5a3ec8
+	github.com/go-rel/primaryreplica v0.6.0
 	github.com/go-rel/rel v0.41.0
 	github.com/go-rel/sql v0.16.0
 	github.com/jackc/pgx/v5 v5.4.3
