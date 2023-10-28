@@ -6,8 +6,8 @@ toolchain go1.21.0
 
 require (
 	github.com/go-rel/primaryreplica v0.5.1-0.20231009233555-b640af5a3ec8
-	github.com/go-rel/rel v0.40.1-0.20231007112841-2e07fc196025
-	github.com/go-rel/sql v0.15.1-0.20231007214945-be5e6ac51f86
+	github.com/go-rel/rel v0.41.0
+	github.com/go-rel/sql v0.16.0
 	github.com/jackc/pgx/v5 v5.4.3
 	github.com/lib/pq v1.10.9
 	github.com/stretchr/testify v1.8.4
