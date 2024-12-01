@@ -42,7 +42,7 @@ jobs:
           go test -race -p 1 -coverprofile=coverage.txt -covermode=atomic ./...
         if: matrix.postgres == 13
       - name: Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: matrix.postgres == 13
 
   primaryreplica:
