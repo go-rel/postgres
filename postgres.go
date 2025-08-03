@@ -16,6 +16,7 @@ package postgres
 import (
 	"context"
 	db "database/sql"
+	"slices"
 	"time"
 
 	"github.com/go-rel/rel"
@@ -30,8 +31,6 @@ type Postgres struct {
 
 // Name of database type this adapter implements.
 const Name string = "postgres"
-
-var driverName string = "postgres"
 
 // New postgres adapter using existing connection.
 func New(database *db.DB) rel.Adapter {
@@ -65,15 +64,37 @@ func New(database *db.DB) rel.Adapter {
 	}
 }
 
+type OpenOpt struct {
+	driver string
+}
+
+func WithDriver(driver string) OpenOpt {
+	return OpenOpt{driver: driver}
+}
+
 // Open postgres connection using dsn.
-func Open(dsn string) (rel.Adapter, error) {
+func Open(dsn string, opts ...OpenOpt) (rel.Adapter, error) {
+	// Default to postgres driver
+	driverName := "postgres"
+
+	// Identify if pgx driver is available and default to that instead.
+	if slices.Contains(db.Drivers(), "pgx") {
+		driverName = "pgx"
+	}
+
+	for _, opts := range opts {
+		if opts.driver != "" {
+			driverName = opts.driver
+		}
+	}
+
 	database, err := db.Open(driverName, dsn)
 	return New(database), err
 }
 
 // MustOpen postgres connection using dsn.
-func MustOpen(dsn string) rel.Adapter {
-	adapter, err := Open(dsn)
+func MustOpen(dsn string, opts ...OpenOpt) rel.Adapter {
+	adapter, err := Open(dsn, opts...)
 	if err != nil {
 		panic(err)
 	}
@@ -194,14 +215,4 @@ func columnMapper(column *rel.Column) (string, int, int) {
 	}
 
 	return typ, m, n
-}
-
-func init() {
-	// Identify if pgx driver is available and default to that instead.
-	for _, drv := range db.Drivers() {
-		if drv == "pgx" {
-			driverName = "pgx"
-			break
-		}
-	}
 }

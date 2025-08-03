@@ -29,8 +29,7 @@ func dsn() string {
 }
 
 func TestAdapter_Name(t *testing.T) {
-	driverName = "postgres"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("postgres"))
 	defer adapter.Close()
 
 	assert.Equal(t, Name, adapter.Name())
@@ -115,8 +114,7 @@ func TestAdapter_specs(t *testing.T) {
 		return
 	}
 
-	driverName = "postgres"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("postgres"))
 	defer adapter.Close()
 
 	repo := rel.New(adapter)
@@ -129,7 +127,6 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 		return
 	}
 
-	driverName = "postgres"
 	adapter := primaryreplica.New(
 		MustOpen("postgres://rel:rel@localhost:25432/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
 		MustOpen("postgres://rel:rel@localhost:25433/rel_test?sslmode=disable&timezone=Asia/Jakarta"),
@@ -142,24 +139,21 @@ func TestAdapter_PrimaryReplica_specs(t *testing.T) {
 }
 
 func TestAdapter_Transaction_commitError(t *testing.T) {
-	driverName = "postgres"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("postgres"))
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Commit(ctx))
 }
 
 func TestAdapter_Transaction_rollbackError(t *testing.T) {
-	driverName = "postgres"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("postgres"))
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Rollback(ctx))
 }
 
 func TestAdapter_Exec_error(t *testing.T) {
-	driverName = "postgres"
-	adapter, err := Open(dsn())
+	adapter, err := Open(dsn(), WithDriver("postgres"))
 	assert.Nil(t, err)
 	defer adapter.Close()
 
@@ -168,8 +162,7 @@ func TestAdapter_Exec_error(t *testing.T) {
 }
 
 func TestAdapter_TableBuilder(t *testing.T) {
-	driverName = "postgres"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("postgres"))
 	defer adapter.Close()
 
 	tests := []struct {

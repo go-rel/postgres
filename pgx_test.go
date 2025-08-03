@@ -16,8 +16,7 @@ func init() {
 }
 
 func TestAdapterPgx_specs(t *testing.T) {
-	driverName = "pgx"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("pgx"))
 	defer adapter.Close()
 
 	repo := rel.New(adapter)
@@ -25,24 +24,21 @@ func TestAdapterPgx_specs(t *testing.T) {
 }
 
 func TestAdapterPgx_Transaction_commitError(t *testing.T) {
-	driverName = "pgx"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("pgx"))
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Commit(ctx))
 }
 
 func TestAdapterPgx_Transaction_rollbackError(t *testing.T) {
-	driverName = "pgx"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("pgx"))
 	defer adapter.Close()
 
 	assert.NotNil(t, adapter.Rollback(ctx))
 }
 
 func TestAdapterPgx_Exec_error(t *testing.T) {
-	driverName = "pgx"
-	adapter := MustOpen(dsn())
+	adapter := MustOpen(dsn(), WithDriver("pgx"))
 	defer adapter.Close()
 
 	_, _, err := adapter.Exec(ctx, "error", nil)
@@ -51,7 +47,6 @@ func TestAdapterPgx_Exec_error(t *testing.T) {
 
 func TestAdapterPgx_InvalidDriverPanic(t *testing.T) {
 	assert.Panics(t, func() {
-		driverName = "pgx/v4"
-		MustOpen("postgres://test:test@localhost:1111/test?sslmode=disable&timezone=Asia/Jakarta")
+		MustOpen("postgres://test:test@localhost:1111/test?sslmode=disable&timezone=Asia/Jakarta", WithDriver("pgx/v4"))
 	})
 }
